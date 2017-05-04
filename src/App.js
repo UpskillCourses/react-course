@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import RedditPost from './redditPost'
+import NewPost from './newPost'
 import redditPosts from './data/redditPosts'
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
     })
     return (
       <div className="App">
+        <NewPost />
         {redditPostComponents}
       </div>
     );
