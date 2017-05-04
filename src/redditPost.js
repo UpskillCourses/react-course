@@ -1,8 +1,11 @@
 import React from 'react';
 
-export default () => 
-    <div className="reddit-post">
-        <a href="http://google.com">Google</a>
-        <p>5 Comments</p>
-        <p>2 Minutes Ago</p>
-    </div>
+export default (props) =>  {
+    return (
+        <div className="reddit-post">
+            <a href={props.link}>{props.title}</a>
+            <p>{props.commentCount} Comments</p>
+            <p>{props.minutesAgo} Minutes Ago</p>
+        </div>
+    )
+}
