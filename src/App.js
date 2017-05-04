@@ -8,10 +8,6 @@ class App extends Component {
     return (
       <div className="App">
         <RedditPost />
-        <RedditPost />
-        <RedditPost />
-        <RedditPost />
-        <RedditPost />
       </div>
     );
   }
