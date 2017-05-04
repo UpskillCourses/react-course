@@ -6,8 +6,17 @@ import NewPost from './newPost'
 import redditPosts from './data/redditPosts'
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = { redditPosts: [] }
+  }
+  
+  componentWillMount() {
+    this.setState({redditPosts: redditPosts })
+  }
+  
   render() {
-    const redditPostComponents = redditPosts.map((redditPost) => {
+    const redditPostComponents = this.state.redditPosts.map((redditPost) => {
       return (
         <RedditPost
           key={redditPost.title}
@@ -20,7 +29,9 @@ class App extends Component {
     })
     return (
       <div className="App">
-        <NewPost />
+        <NewPost onAdd={(redditPost) => {
+          this.setState({redditPosts: this.state.redditPosts.concat(redditPost)}) 
+        }}/>
         {redditPostComponents}
       </div>
     );
