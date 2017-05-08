@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { database } from 'firebase'
+import _ from 'lodash'
 import logo from './logo.svg';
 import './App.css';
 import RedditPost from './redditPost'
 import NewPost from './newPost'
-import redditPosts from './data/redditPosts'
 
 class App extends Component {
   constructor() {
@@ -12,14 +13,18 @@ class App extends Component {
   }
   
   componentWillMount() {
-    this.setState({redditPosts: redditPosts })
+    database().ref('/').on('value', (snapshot) => {
+      const redditPosts = snapshot.val()
+      this.setState({redditPosts: redditPosts })
+    })
+
   }
   
   render() {
-    const redditPostComponents = this.state.redditPosts.map((redditPost) => {
+    const redditPostComponents = _.map(this.state.redditPosts, (redditPost, key) => {
       return (
         <RedditPost
-          key={redditPost.title}
+          key={key}
           title={redditPost.title} 
           link={redditPost} 
           commentCount={redditPost.commentCount} 
