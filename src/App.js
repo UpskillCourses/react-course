@@ -35,7 +35,7 @@ class App extends Component {
     return (
       <div className="App">
         <NewPost onAdd={(redditPost) => {
-          this.setState({redditPosts: this.state.redditPosts.concat(redditPost)}) 
+          database().ref('/').push(redditPost)
         }}/>
         {redditPostComponents}
       </div>
